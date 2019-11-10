@@ -4,7 +4,7 @@ android {
     compileSdkVersion Integer.parseInt(project.ANDROID_COMPILE_SDK_VERSION)
 
     defaultConfig {
-        applicationId "co.chatsdk.android.app"
+        applicationId "co.chatsdk.android.app.uci"
 
         multiDexEnabled = true
         minSdkVersion Integer.parseInt(project.MIN_SDK)
@@ -73,6 +73,7 @@ dependencies {
     implementation project(path: ':chat-sdk-firebase-file-storage')
     implementation project(path: ':chat-sdk-firebase-ui')
     implementation project(path: ':chat-sdk-profile-pictures')
+    implementation 'com.google.firebase:firebase-analytics:17.2.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
