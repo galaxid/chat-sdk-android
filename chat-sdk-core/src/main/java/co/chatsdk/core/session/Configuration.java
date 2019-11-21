@@ -75,7 +75,7 @@ public class Configuration {
     // Rooms that are older than this will be hidden
     // Zero is infinite lifetime
     // Default - 7 days
-    public int publicChatRoomLifetimeMinutes = 60 * 24 * 7;
+    public int publicChatRoomLifetimeMinutes = 0;
 
     // Should the client send the push or is a server script handling it?
     public boolean clientPushEnabled = false;

@@ -38,7 +38,7 @@ public class AppObj extends MultiDexApplication {
             config.googleLogin("1088435112418-e3t77t8jl2ucs8efeqs72o696in8soui.apps.googleusercontent.com");
 
             // For the demo version of the client expire rooms after 24 hours
-            config.publicChatRoomLifetimeMinutes(60 * 24);
+            config.publicChatRoomLifetimeMinutes(0);
 
             ChatSDK.initialize(context, config.build(), FirebaseNetworkAdapter.class, BaseInterfaceAdapter.class);
 
