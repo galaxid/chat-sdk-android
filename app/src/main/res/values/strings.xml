@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Chat SDK</string>
+    <string name="app_name">UCI Career</string>
 
     <string name="facebook_app_identifier" translatable="false">648056098576150</string>
 
