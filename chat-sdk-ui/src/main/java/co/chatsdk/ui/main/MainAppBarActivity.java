@@ -44,7 +44,7 @@ public class MainAppBarActivity extends MainActivity {
 
         final List<Tab> tabs = adapter.getTabs();
         for (Tab tab : tabs) {
-            tabLayout.addTab(tabLayout.newTab().setText(tab.title));
+            tabLayout.addTab(tabLayout.newTab().setText(tab.title).setIcon(tab.icon));
         }
 
         ((BaseFragment) tabs.get(0).fragment).setTabVisibility(true);
