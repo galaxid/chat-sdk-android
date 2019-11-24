@@ -47,6 +47,7 @@ import co.chatsdk.ui.chat.options.DialogChatOptionsHandler;
 import co.chatsdk.ui.chat.options.LocationChatOption;
 import co.chatsdk.ui.chat.options.MediaChatOption;
 import co.chatsdk.ui.chat.options.MediaType;
+import co.chatsdk.ui.rooms.RoomsFragment;
 import co.chatsdk.ui.threads.AddUsersToThreadActivity;
 import co.chatsdk.ui.contacts.ContactsFragment;
 import co.chatsdk.ui.threads.CreateThreadActivity;
@@ -94,6 +95,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     protected Fragment privateThreadsFragment = new PrivateThreadsFragment();
     protected Fragment publicThreadsFragment = new PublicThreadsFragment();
     protected Fragment contactsFragment = new ContactsFragment();
+    protected Fragment roomsFragment = new RoomsFragment();
     protected ProfileFragmentProvider profileFragmentProvider = ProfileFragment::newInstance;
 
     private ArrayList<Tab> tabs = new ArrayList<>();
@@ -101,6 +103,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     private Tab publicThreadsTab;
     private Tab contactsTab;
     private Tab profileTab;
+    private Tab roomsTab;
 
     private String stringLocation;
     private String stringTakePhoto;
@@ -145,6 +148,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         tabs.add(publicThreadsTab());
         tabs.add(contactsTab());
         tabs.add(profileTab());
+        tabs.add(roomsTab());
         return tabs;
     }
 
@@ -211,6 +215,21 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
             profileTab = new Tab (context.get().getString(R.string.profile), R.drawable.ic_action_user, profileFragment(null));
         }
         return profileTab;
+    }
+
+    public Tab roomsTab() {
+        if (roomsTab == null) {
+            roomsTab = new Tab (context.get().getString(R.string.rooms), R.drawable.ic_action_user, roomsFragment());
+        }
+        return roomsTab;
+    }
+
+    public Fragment roomsFragment() {
+        return roomsFragment;
+    }
+
+    public void setRoomsFragment (Fragment roomsFragment) {
+        this.roomsFragment = roomsFragment;
     }
 
     @Override

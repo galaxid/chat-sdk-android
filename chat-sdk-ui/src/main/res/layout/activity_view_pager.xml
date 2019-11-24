@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="#0f000000"
         app:tabIndicatorHeight="0dp"
         app:tabTextAppearance="@style/TabLayoutTextStyle"/>
 
