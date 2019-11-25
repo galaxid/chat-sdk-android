@@ -1,4 +1,4 @@
-package co.chatsdk.ui.mock;
+package co.chatsdk.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,15 @@ import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 
  */
 
-public class MockFragment extends BaseFragment {
+public class ProfileContactFragment extends BaseFragment {
 
 
     private static FirstPageFragmentListener firstPageListener;
 
-    public MockFragment() {
+    public ProfileContactFragment() {
     }
 
-    public MockFragment(FirstPageFragmentListener listener) {
+    public ProfileContactFragment(FirstPageFragmentListener listener) {
         firstPageListener = listener;
     }
     public View view;
@@ -32,8 +32,8 @@ public class MockFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
 
-    public static MockFragment newInstance() {
-        MockFragment f = new MockFragment();
+    public static ProfileContactFragment newInstance() {
+        ProfileContactFragment f = new ProfileContactFragment();
 
         Bundle b = new Bundle();
 
@@ -43,12 +43,12 @@ public class MockFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        view = inflater.inflate(R.layout.fragment_mock,container,false);
-        Button button1 = (Button) view.findViewById(R.id.button_mock);
+        view = inflater.inflate(R.layout.fragment_profile_contacts,container,false);
+        Button button1 = (Button) view.findViewById(R.id.button_profile);
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                firstPageListener.onSwitchToNextFragment(8);
+                firstPageListener.onSwitchToNextFragment(5);
             }
         });
         button1.setOnLongClickListener(new View.OnLongClickListener(){
@@ -59,6 +59,20 @@ public class MockFragment extends BaseFragment {
 
         });
 
+        Button button2= (Button) view.findViewById(R.id.button_contacts);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                firstPageListener.onSwitchToNextFragment(6);
+            }
+        });
+        button2.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View arg0) {
+                return true;
+            }
+
+        });
         return view;
 
     }

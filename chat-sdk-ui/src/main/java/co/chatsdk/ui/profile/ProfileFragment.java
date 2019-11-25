@@ -30,6 +30,7 @@ import co.chatsdk.core.types.ConnectionType;
 import co.chatsdk.core.utils.StringChecker;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.main.BaseFragment;
+import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 import co.chatsdk.ui.utils.AvailabilityHelper;
 import co.chatsdk.ui.utils.ToastHelper;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -64,6 +65,12 @@ public class ProfileFragment extends BaseFragment {
 
     protected User user;
 
+    private static FirstPageFragmentListener firstPageListener;
+
+    public void backPressed() {
+        firstPageListener.onSwitchToNextFragment(5);
+    }
+
     public static ProfileFragment newInstance(User user) {
         ProfileFragment f = new ProfileFragment();
 
@@ -76,6 +83,10 @@ public class ProfileFragment extends BaseFragment {
         f.setArguments(b);
         f.setRetainInstance(true);
         return f;
+    }
+
+    public void setListener(FirstPageFragmentListener listener){
+        firstPageListener = listener;
     }
 
     @Override

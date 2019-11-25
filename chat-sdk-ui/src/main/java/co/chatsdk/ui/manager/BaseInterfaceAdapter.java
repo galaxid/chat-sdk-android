@@ -50,6 +50,7 @@ import co.chatsdk.ui.chat.options.MediaType;
 import co.chatsdk.ui.job.JobFragment;
 import co.chatsdk.ui.mock.MockFragment;
 import co.chatsdk.ui.news.NewsFragment;
+import co.chatsdk.ui.profile.ProfileContactFragment;
 import co.chatsdk.ui.rooms.RoomsFragment;
 import co.chatsdk.ui.threads.AddUsersToThreadActivity;
 import co.chatsdk.ui.contacts.ContactsFragment;
@@ -103,6 +104,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     protected Fragment jobFragment = new JobFragment();
     protected Fragment mockFragment = new MockFragment();
     protected ProfileFragmentProvider profileFragmentProvider = ProfileFragment::newInstance;
+    protected Fragment profileContactFragment = new ProfileContactFragment();
 
     private ArrayList<Tab> tabs = new ArrayList<>();
     private Tab privateThreadsTab;
@@ -113,6 +115,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     private Tab newsTab;
     private Tab jobTab;
     private Tab mockTab;
+    private Tab profileContactTab;
 
     private String stringLocation;
     private String stringTakePhoto;
@@ -160,7 +163,8 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         //tabs.add(publicThreadsTab());
         tabs.add(jobTab());
         tabs.add(mockTab());
-        tabs.add(profileTab());
+        //tabs.add(profileTab());
+        tabs.add(profileContactTab());
         return tabs;
     }
 
@@ -257,6 +261,14 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         return mockTab;
     }
 
+    public Tab profileContactTab() {
+        if (profileContactTab == null) {
+            profileContactTab = new Tab (context.get().getString(R.string.profile), R.drawable.ic_action_user, profileContactFragment());
+        }
+        return profileContactTab;
+    }
+
+
     public Fragment roomsFragment() {
         return roomsFragment;
     }
@@ -287,6 +299,14 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
 
     public void setMockFragment (Fragment mockFragment) {
         this.mockFragment = mockFragment;
+    }
+
+    public Fragment profileContactFragment() {
+        return profileContactFragment;
+    }
+
+    public void setprofileContactFragment (Fragment profileContactFragment) {
+        this.profileContactFragment = profileContactFragment;
     }
 
     @Override

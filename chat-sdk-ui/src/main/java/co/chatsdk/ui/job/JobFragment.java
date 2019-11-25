@@ -48,7 +48,7 @@ public class JobFragment extends BaseFragment {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                firstPageListener.onSwitchToNextFragment(5);
+                firstPageListener.onSwitchToNextFragment(7);
             }
         });
         button1.setOnLongClickListener(new View.OnLongClickListener(){

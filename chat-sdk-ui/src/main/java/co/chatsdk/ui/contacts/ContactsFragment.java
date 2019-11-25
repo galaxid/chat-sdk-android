@@ -37,6 +37,7 @@ import co.chatsdk.core.utils.CrashReportingCompletableObserver;
 import co.chatsdk.core.utils.UserListItemConverter;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.main.BaseFragment;
+import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 import co.chatsdk.ui.search.SearchActivity;
 import co.chatsdk.ui.utils.ToastHelper;
 import io.reactivex.Completable;
@@ -130,6 +131,17 @@ public class ContactsFragment extends BaseFragment {
      * @param threadID - The id of the thread that his users is the want you want to show.
      * @param title - The title of the dialog.
      */
+
+    static FirstPageFragmentListener firstPageListener;
+
+
+    public void setListener(FirstPageFragmentListener listener) {
+        firstPageListener = listener;
+    }
+
+    public void backPressed() {
+        firstPageListener.onSwitchToNextFragment(6);
+    }
     public static ContactsFragment newThreadUsersDialogInstance(String threadID, String title) {
         ContactsFragment f = new ContactsFragment();
         f.setTitle(title);

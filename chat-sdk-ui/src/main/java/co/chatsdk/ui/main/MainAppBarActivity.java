@@ -14,8 +14,10 @@ import co.chatsdk.core.interfaces.LocalNotificationHandler;
 import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.contacts.ContactsFragment;
 import co.chatsdk.ui.news.EventListFragment;
 import co.chatsdk.ui.news.NewsListFragment;
+import co.chatsdk.ui.profile.ProfileFragment;
 import co.chatsdk.ui.threads.PrivateThreadsFragment;
 import co.chatsdk.ui.threads.PublicThreadsFragment;
 
@@ -136,6 +138,14 @@ public class MainAppBarActivity extends MainActivity {
             }
             else if (adapter.getItem(1) instanceof PrivateThreadsFragment) {
                 ((PrivateThreadsFragment) adapter.getItem(1)).backPressed();
+            }
+        }
+        if(viewPager.getCurrentItem() == 4) {
+            if (adapter.getItem(4) instanceof ProfileFragment) {
+                ((ProfileFragment) adapter.getItem(4)).backPressed();
+            }
+            else if (adapter.getItem(4) instanceof ContactsFragment) {
+                ((ContactsFragment) adapter.getItem(4)).backPressed();
             }
         }
     }
