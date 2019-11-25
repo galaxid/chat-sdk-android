@@ -83,6 +83,13 @@ public class RoomsFragment extends BaseFragment {
                 firstPageListener.onSwitchToNextFragment(0);
             }
         });
+        button1.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View arg0) {
+                return true;
+            }
+
+        });
 
         Button button2= (Button) view.findViewById(R.id.button_company);
         button2.setOnClickListener(new View.OnClickListener(){
@@ -91,6 +98,13 @@ public class RoomsFragment extends BaseFragment {
                 firstPageListener.onSwitchToNextFragment(1);
             }
         });
+        button2.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View arg0) {
+                return true;
+            }
+
+        });
 
         Button button3 = (Button) view.findViewById(R.id.button_private);
         button3.setOnClickListener(new View.OnClickListener(){
@@ -98,6 +112,13 @@ public class RoomsFragment extends BaseFragment {
             public void onClick(View arg0) {
                 firstPageListener.onSwitchToNextFragment(2);
             }
+        });
+        button3.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View arg0) {
+                return true;
+            }
+
         });
 
         return view;

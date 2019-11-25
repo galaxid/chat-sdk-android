@@ -147,9 +147,9 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         ArrayList<Tab> tabs = new ArrayList<>();
         tabs.add(contactsTab());
         tabs.add(roomsTab());
-        tabs.add(profileTab());
         tabs.add(privateThreadsTab());
         tabs.add(publicThreadsTab());
+        tabs.add(profileTab());
         return tabs;
     }
 

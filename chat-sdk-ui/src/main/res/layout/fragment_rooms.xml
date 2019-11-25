@@ -10,7 +10,7 @@
 
     <co.chatsdk.ui.rooms.TwoLineButton
         android:id="@+id/button_major"
-        android:background="#7f000000"
+        android:background="@drawable/ripple_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -19,7 +19,7 @@
         />
     <co.chatsdk.ui.rooms.TwoLineButton
         android:id="@+id/button_company"
-        android:background="#7f000000"
+        android:background="@drawable/ripple_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -28,7 +28,7 @@
         />
     <co.chatsdk.ui.rooms.TwoLineButton
         android:id="@+id/button_private"
-        android:background="#7f000000"
+        android:background="@drawable/ripple_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
