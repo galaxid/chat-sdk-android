@@ -14,6 +14,8 @@ import co.chatsdk.core.interfaces.LocalNotificationHandler;
 import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.news.EventListFragment;
+import co.chatsdk.ui.news.NewsListFragment;
 import co.chatsdk.ui.threads.PrivateThreadsFragment;
 import co.chatsdk.ui.threads.PublicThreadsFragment;
 
@@ -37,7 +39,7 @@ public class MainAppBarActivity extends MainActivity {
         viewPager = findViewById(R.id.pager);
 
         tabLayout = findViewById(R.id.tab_layout);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         // Only creates the adapter if it wasn't initiated already
         if (adapter == null) {
@@ -120,6 +122,14 @@ public class MainAppBarActivity extends MainActivity {
 
     @Override
     public void onBackPressed() {
+        if(viewPager.getCurrentItem() == 0) {
+            if (adapter.getItem(0) instanceof NewsListFragment) {
+                ((NewsListFragment) adapter.getItem(0)).backPressed();
+            }
+            else if (adapter.getItem(0) instanceof EventListFragment) {
+                ((EventListFragment) adapter.getItem(0)).backPressed();
+            }
+        }
         if(viewPager.getCurrentItem() == 1) {
             if (adapter.getItem(1) instanceof PublicThreadsFragment) {
                 ((PublicThreadsFragment) adapter.getItem(1)).backPressed();

@@ -18,6 +18,9 @@ import java.util.List;
 
 import co.chatsdk.core.Tab;
 import co.chatsdk.core.session.ChatSDK;
+import co.chatsdk.ui.news.EventListFragment;
+import co.chatsdk.ui.news.NewsFragment;
+import co.chatsdk.ui.news.NewsListFragment;
 import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 import co.chatsdk.ui.rooms.RoomsFragment;
 import co.chatsdk.ui.threads.PrivateThreadsFragment;
@@ -28,7 +31,8 @@ import co.chatsdk.ui.threads.PublicThreadsFragment;
  */
 public class PagerAdapterTabs extends FragmentPagerAdapter {
 
-    Boolean firsttime = true;
+    private Boolean firsttime0 = true;
+    private Boolean firsttime1 = true;
 
     private FragmentManager mFragmentManager;
 
@@ -58,11 +62,16 @@ public class PagerAdapterTabs extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 1 &&firsttime){
-            tabs.get(position).fragment = new RoomsFragment(listener);
-            firsttime = false;
+
+        if(position == 0 &&firsttime0){
+            tabs.get(position).fragment = new NewsFragment(listener);
+            firsttime0 = false;
         }
-        Log.w("1",tabs.get(position).fragment.toString());
+
+        if(position == 1 &&firsttime1){
+            tabs.get(position).fragment = new RoomsFragment(listener);
+            firsttime1 = false;
+        }
         return tabs.get(position).fragment;
     }
     @Override
@@ -73,16 +82,33 @@ public class PagerAdapterTabs extends FragmentPagerAdapter {
     public final class FirstPageListener implements
             FirstPageFragmentListener {
         public void onSwitchToNextFragment(int value) {
-           Boolean fm = tabs.get(1).fragment instanceof RoomsFragment;
-            Log.w("1",fm.toString());
-            mFragmentManager.beginTransaction().remove(tabs.get(1).fragment)
-                    .commitNow();
-            if (fm && (value==0||value==1)){
-                tabs.get(1).fragment = new PublicThreadsFragment(listener);
-            }else if(fm && (value==2)){ // Instance of NextFragment
-                tabs.get(1).fragment = new PrivateThreadsFragment(listener);
+            if(value<3){
+                boolean fm = tabs.get(1).fragment instanceof RoomsFragment;
+                mFragmentManager.beginTransaction().remove(tabs.get(1).fragment)
+                        .commitNow();
+                if (fm && value==0){
+                    tabs.get(1).fragment = new PublicThreadsFragment(listener,true);
+                }else if(fm && (value==1)){ // Instance of NextFragment
+                    tabs.get(1).fragment = new PublicThreadsFragment(listener,false);
+                }
+                else if(fm && (value==2)){ // Instance of NextFragment
+                    tabs.get(1).fragment = new PrivateThreadsFragment(listener);
+                }
+                else tabs.get(1).fragment = new RoomsFragment(listener);
+
             }
-            else tabs.get(1).fragment = new RoomsFragment(listener);
+            if(value==3||value==4){
+                boolean fm = tabs.get(0).fragment instanceof NewsFragment;
+                mFragmentManager.beginTransaction().remove(tabs.get(0).fragment)
+                        .commitNow();
+                if (fm && value==3){
+                    tabs.get(0).fragment = new NewsListFragment(listener);
+                }else if(fm){ // Instance of NextFragment
+                    tabs.get(0).fragment = new EventListFragment(listener);
+                }
+                else tabs.get(0).fragment = new NewsFragment(listener);
+
+            }
             notifyDataSetChanged();
         }
     }

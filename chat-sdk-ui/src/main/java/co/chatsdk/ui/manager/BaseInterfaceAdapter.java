@@ -47,7 +47,9 @@ import co.chatsdk.ui.chat.options.DialogChatOptionsHandler;
 import co.chatsdk.ui.chat.options.LocationChatOption;
 import co.chatsdk.ui.chat.options.MediaChatOption;
 import co.chatsdk.ui.chat.options.MediaType;
-import co.chatsdk.ui.main.PagerAdapterTabs;
+import co.chatsdk.ui.job.JobFragment;
+import co.chatsdk.ui.mock.MockFragment;
+import co.chatsdk.ui.news.NewsFragment;
 import co.chatsdk.ui.rooms.RoomsFragment;
 import co.chatsdk.ui.threads.AddUsersToThreadActivity;
 import co.chatsdk.ui.contacts.ContactsFragment;
@@ -97,6 +99,9 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     protected Fragment publicThreadsFragment = new PublicThreadsFragment();
     protected Fragment contactsFragment = new ContactsFragment();
     protected Fragment roomsFragment = new RoomsFragment();
+    protected Fragment newsFragment = new NewsFragment();
+    protected Fragment jobFragment = new JobFragment();
+    protected Fragment mockFragment = new MockFragment();
     protected ProfileFragmentProvider profileFragmentProvider = ProfileFragment::newInstance;
 
     private ArrayList<Tab> tabs = new ArrayList<>();
@@ -105,6 +110,9 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     private Tab contactsTab;
     private Tab profileTab;
     private Tab roomsTab;
+    private Tab newsTab;
+    private Tab jobTab;
+    private Tab mockTab;
 
     private String stringLocation;
     private String stringTakePhoto;
@@ -145,10 +153,13 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     @Override
     public List<Tab> defaultTabs() {
         ArrayList<Tab> tabs = new ArrayList<>();
-        tabs.add(contactsTab());
+        //tabs.add(contactsTab());
+        tabs.add(newsTab());
         tabs.add(roomsTab());
-        tabs.add(privateThreadsTab());
-        tabs.add(publicThreadsTab());
+        //tabs.add(privateThreadsTab());
+        //tabs.add(publicThreadsTab());
+        tabs.add(jobTab());
+        tabs.add(mockTab());
         tabs.add(profileTab());
         return tabs;
     }
@@ -225,12 +236,57 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         return roomsTab;
     }
 
+    public Tab newsTab() {
+        if (newsTab == null) {
+            newsTab = new Tab (context.get().getString(R.string.news), R.drawable.ic_action_user, newsFragment());
+        }
+        return newsTab;
+    }
+
+    public Tab jobTab() {
+        if (jobTab == null) {
+            jobTab = new Tab (context.get().getString(R.string.job), R.drawable.ic_action_user, jobFragment());
+        }
+        return jobTab;
+    }
+
+    public Tab mockTab() {
+        if (mockTab == null) {
+            mockTab = new Tab (context.get().getString(R.string.mock), R.drawable.ic_action_user, mockFragment());
+        }
+        return mockTab;
+    }
+
     public Fragment roomsFragment() {
         return roomsFragment;
     }
 
     public void setRoomsFragment (Fragment roomsFragment) {
         this.roomsFragment = roomsFragment;
+    }
+
+    public Fragment newsFragment() {
+        return newsFragment;
+    }
+
+    public void setNewsFragment (Fragment newsFragment) {
+        this.newsFragment = newsFragment;
+    }
+
+    public Fragment jobFragment() {
+        return jobFragment;
+    }
+
+    public void setJobFragment (Fragment jobFragment) {
+        this.jobFragment = jobFragment;
+    }
+
+    public Fragment mockFragment() {
+        return mockFragment;
+    }
+
+    public void setMockFragment (Fragment mockFragment) {
+        this.mockFragment = mockFragment;
     }
 
     @Override

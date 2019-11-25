@@ -5,12 +5,11 @@
  * Last Modification at: 3/12/15 4:27 PM
  */
 
-package co.chatsdk.ui.threads;
+package co.chatsdk.ui.news;
 
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import co.chatsdk.core.dao.Thread;
@@ -19,27 +18,26 @@ import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.rooms.FirstPageFragmentListener;
+import co.chatsdk.ui.threads.ThreadsFragment;
 import io.reactivex.functions.Predicate;
 
 /**
  * Created by itzik on 6/17/2014.
  */
-public class PublicThreadsFragment extends ThreadsFragment {
+public class NewsListFragment extends ThreadsFragment {
 
     private static FirstPageFragmentListener firstPageListener;
-    private boolean major;
 
-    public PublicThreadsFragment() {
+    public NewsListFragment() {
     }
 
-    public PublicThreadsFragment(FirstPageFragmentListener listener, boolean value) {
+    public NewsListFragment(FirstPageFragmentListener listener) {
         firstPageListener = listener;
-        major=value;
 
     }
 
     public void backPressed() {
-        firstPageListener.onSwitchToNextFragment(0);
+        firstPageListener.onSwitchToNextFragment(3);
     }
 
     @Override
@@ -82,10 +80,10 @@ public class PublicThreadsFragment extends ThreadsFragment {
             return filtered;
         }*/
         for (Thread t : threads) { //改detail里面的
-            if (major && (t.getCreatorEntityId().equals("SZoT8XiZHOPDGj7Toxz8DNVqLfu2"))) {
+            if (t.getCreatorEntityId().equals("SZoT8XiZHOPDGj7Toxz8DNVqLfu2")) {
                 filtered.add(t);
             }
-            else if((!major)&&(t.getCreatorEntityId().equals("s4Pmpq8XDjYo5HusbG7R2oR74Hj2")))
+            else if(t.getCreatorEntityId().equals("s4Pmpq8XDjYo5HusbG7R2oR74Hj2"))
                 filtered.add(t);
         }
 
