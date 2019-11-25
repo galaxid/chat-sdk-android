@@ -18,12 +18,26 @@ import co.chatsdk.core.events.NetworkEvent;
 import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 import io.reactivex.functions.Predicate;
 
 /**
  * Created by itzik on 6/17/2014.
  */
 public class PublicThreadsFragment extends ThreadsFragment {
+
+    static FirstPageFragmentListener firstPageListener;
+
+    public PublicThreadsFragment() {
+    }
+
+    public PublicThreadsFragment(FirstPageFragmentListener listener) {
+        firstPageListener = listener;
+    }
+
+    public void backPressed() {
+        firstPageListener.onSwitchToNextFragment(0);
+    }
 
     @Override
     public Predicate<NetworkEvent> mainEventFilter() {

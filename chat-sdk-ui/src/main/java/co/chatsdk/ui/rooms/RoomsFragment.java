@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.LayoutRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -31,6 +34,10 @@ import co.chatsdk.core.types.ConnectionType;
 import co.chatsdk.core.utils.StringChecker;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.main.BaseFragment;
+import co.chatsdk.ui.main.PagerAdapterTabs;
+import co.chatsdk.ui.profile.ProfileFragment;
+import co.chatsdk.ui.threads.PrivateThreadsFragment;
+import co.chatsdk.ui.threads.PublicThreadsFragment;
 import co.chatsdk.ui.utils.AvailabilityHelper;
 import co.chatsdk.ui.utils.ToastHelper;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -41,14 +48,58 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class RoomsFragment extends BaseFragment {
 
+
+    private static FirstPageFragmentListener firstPageListener;
+
+    public RoomsFragment() {
+    }
+
+    public RoomsFragment(FirstPageFragmentListener listener) {
+        firstPageListener = listener;
+    }
+    public View view;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    public static RoomsFragment newInstance() {
+        RoomsFragment f = new RoomsFragment();
+
+        Bundle b = new Bundle();
+
+        f.setArguments(b);
+        return f;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_rooms,container,false);
+        view = inflater.inflate(R.layout.fragment_rooms,container,false);
+        Button button1 = (Button) view.findViewById(R.id.button_major);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                firstPageListener.onSwitchToNextFragment(0);
+            }
+        });
+
+        Button button2= (Button) view.findViewById(R.id.button_company);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                firstPageListener.onSwitchToNextFragment(1);
+            }
+        });
+
+        Button button3 = (Button) view.findViewById(R.id.button_private);
+        button3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                firstPageListener.onSwitchToNextFragment(2);
+            }
+        });
+
         return view;
 
     }

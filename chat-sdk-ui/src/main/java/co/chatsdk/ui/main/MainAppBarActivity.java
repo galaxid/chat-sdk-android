@@ -14,6 +14,8 @@ import co.chatsdk.core.interfaces.LocalNotificationHandler;
 import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.threads.PrivateThreadsFragment;
+import co.chatsdk.ui.threads.PublicThreadsFragment;
 
 public class MainAppBarActivity extends MainActivity {
     protected TabLayout tabLayout;
@@ -112,6 +114,18 @@ public class MainAppBarActivity extends MainActivity {
         for(Tab t : adapter.getTabs()) {
             if(t.fragment instanceof BaseFragment) {
                 ((BaseFragment) t.fragment).safeReloadData();
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(viewPager.getCurrentItem() == 1) {
+            if (adapter.getItem(1) instanceof PublicThreadsFragment) {
+                ((PublicThreadsFragment) adapter.getItem(1)).backPressed();
+            }
+            else if (adapter.getItem(1) instanceof PrivateThreadsFragment) {
+                ((PrivateThreadsFragment) adapter.getItem(1)).backPressed();
             }
         }
     }

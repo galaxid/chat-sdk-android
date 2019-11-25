@@ -47,6 +47,7 @@ import co.chatsdk.ui.chat.options.DialogChatOptionsHandler;
 import co.chatsdk.ui.chat.options.LocationChatOption;
 import co.chatsdk.ui.chat.options.MediaChatOption;
 import co.chatsdk.ui.chat.options.MediaType;
+import co.chatsdk.ui.main.PagerAdapterTabs;
 import co.chatsdk.ui.rooms.RoomsFragment;
 import co.chatsdk.ui.threads.AddUsersToThreadActivity;
 import co.chatsdk.ui.contacts.ContactsFragment;
@@ -144,11 +145,11 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     @Override
     public List<Tab> defaultTabs() {
         ArrayList<Tab> tabs = new ArrayList<>();
+        tabs.add(contactsTab());
+        tabs.add(roomsTab());
+        tabs.add(profileTab());
         tabs.add(privateThreadsTab());
         tabs.add(publicThreadsTab());
-        tabs.add(contactsTab());
-        tabs.add(profileTab());
-        tabs.add(roomsTab());
         return tabs;
     }
 

@@ -18,6 +18,7 @@ import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.helpers.DialogUtils;
+import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 import co.chatsdk.ui.utils.ToastHelper;
 import io.reactivex.CompletableObserver;
 import io.reactivex.ObservableSource;
@@ -32,6 +33,19 @@ import io.reactivex.functions.Predicate;
  * Created by itzik on 6/17/2014.
  */
 public class PrivateThreadsFragment extends ThreadsFragment {
+
+    static FirstPageFragmentListener firstPageListener;
+
+    public PrivateThreadsFragment() {
+    }
+
+    public PrivateThreadsFragment(FirstPageFragmentListener listener) {
+        firstPageListener = listener;
+    }
+
+    public void backPressed() {
+        firstPageListener.onSwitchToNextFragment(2);
+    }
 
     @Override
     public void initViews() {
