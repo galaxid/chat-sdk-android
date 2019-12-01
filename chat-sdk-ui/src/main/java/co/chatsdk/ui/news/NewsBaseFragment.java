@@ -1,12 +1,8 @@
-package co.chatsdk.ui.threads;
+package co.chatsdk.ui.news;
 
 import android.os.Bundle;
-import androidx.annotation.LayoutRes;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,10 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import co.chatsdk.core.dao.Message;
+import co.chatsdk.core.dao.Keys;
 import co.chatsdk.core.dao.Thread;
 import co.chatsdk.core.dao.User;
 import co.chatsdk.core.events.EventType;
@@ -26,24 +26,30 @@ import co.chatsdk.core.events.NetworkEvent;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.main.BaseFragment;
+import co.chatsdk.ui.threads.UserList;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Predicate;
 
-public abstract class ThreadsFragment extends BaseFragment {
+public abstract class NewsBaseFragment extends BaseFragment {
 
     protected RecyclerView listThreads;
     protected EditText searchField;
-    protected ThreadsListAdapter adapter;
+    protected NewsListAdapter adapter;
     protected String filter;
     protected MenuItem addMenuItem;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        title = "Chat";
+        title = "News";
         this.getActivity().setTitle(title);
         super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+
+        if(ChatSDK.currentUser().getEntityID().equals(UserList.jueruilics)){
+                setHasOptionsMenu(true);
+        }
+        else setHasOptionsMenu(false);
+
     }
 
     @Override
@@ -85,7 +91,7 @@ public abstract class ThreadsFragment extends BaseFragment {
         searchField = mainView.findViewById(R.id.search_field);
         listThreads = mainView.findViewById(R.id.list_threads);
 
-        adapter = new ThreadsListAdapter(getActivity());
+        adapter = new NewsListAdapter(getActivity());
 
         listThreads.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         listThreads.setAdapter(adapter);

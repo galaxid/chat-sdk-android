@@ -62,8 +62,13 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        title = "UCI Career";
+        this.getActivity().setTitle(title);
+
         super.onCreate(savedInstanceState);
     }
+
+
 
     public static NewsFragment newInstance() {
         NewsFragment f = new NewsFragment();

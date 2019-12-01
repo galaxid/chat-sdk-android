@@ -91,6 +91,8 @@ public class ProfileFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        title = "Profile";
+        this.getActivity().setTitle(title);
         super.onCreateView(inflater, container, savedInstanceState);
 
         if (savedInstanceState != null && savedInstanceState.getString(Keys.UserId) != null) {

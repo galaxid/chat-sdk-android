@@ -43,6 +43,7 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
 
     protected SimpleDraweeView avatarImageView;
     protected TextView timeTextView;
+    protected TextView userTextView;
     protected SimpleDraweeView messageImageView;
     protected ConstraintLayout messageBubble;
     protected TextView messageTextView;
@@ -55,6 +56,7 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
         super(itemView, activity, actionPublishSubject);
 
         timeTextView = itemView.findViewById(R.id.text_time);
+        userTextView = itemView.findViewById(R.id.user_name);
         avatarImageView = itemView.findViewById(R.id.image_avatar);
         messageBubble = itemView.findViewById(R.id.image_message_bubble);
         messageTextView = itemView.findViewById(R.id.text_content);
@@ -114,6 +116,7 @@ public class BaseMessageViewHolder extends AbstractMessageViewHolder {
 
         String time = String.valueOf(getTimeFormat(message).format(message.getDate().toDate()));
         timeTextView.setText(time);
+        userTextView.setText(message.getSender().getName());
 
         avatarImageView.setImageURI(message.getSender().getAvatarURL());
 

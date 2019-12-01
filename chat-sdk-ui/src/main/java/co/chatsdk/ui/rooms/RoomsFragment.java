@@ -61,6 +61,8 @@ public class RoomsFragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        title = "UCI Career";
+        this.getActivity().setTitle(title);
         super.onCreate(savedInstanceState);
     }
 

@@ -7,7 +7,10 @@
 
 package co.chatsdk.ui.news;
 
+import android.os.Bundle;
 import android.view.MenuItem;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +22,15 @@ import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.rooms.FirstPageFragmentListener;
 import co.chatsdk.ui.threads.ThreadsFragment;
+import co.chatsdk.ui.threads.ThreadsListAdapter;
+import co.chatsdk.ui.threads.UserList;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Predicate;
 
 /**
  * Created by itzik on 6/17/2014.
  */
-public class NewsListFragment extends ThreadsFragment {
+public class NewsListFragment extends NewsBaseFragment {
 
     private static FirstPageFragmentListener firstPageListener;
 
@@ -80,11 +86,9 @@ public class NewsListFragment extends ThreadsFragment {
             return filtered;
         }*/
         for (Thread t : threads) { //改detail里面的
-            if (t.getCreatorEntityId().equals("SZoT8XiZHOPDGj7Toxz8DNVqLfu2")) {
+            if (t.getCreatorEntityId().equals(UserList.jueruilics)) {
                 filtered.add(t);
             }
-            else if(t.getCreatorEntityId().equals("s4Pmpq8XDjYo5HusbG7R2oR74Hj2"))
-                filtered.add(t);
         }
 
             return filtered;
@@ -96,5 +100,6 @@ public class NewsListFragment extends ThreadsFragment {
             reloadData();
         }
     }
+
 
 }

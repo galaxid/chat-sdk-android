@@ -29,6 +29,8 @@ public class MockFragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        title = "UCI Career";
+        this.getActivity().setTitle(title);
         super.onCreate(savedInstanceState);
     }
 
@@ -52,6 +54,20 @@ public class MockFragment extends BaseFragment {
             }
         });
         button1.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View arg0) {
+                return true;
+            }
+
+        });
+        Button button2 = (Button) view.findViewById(R.id.button_post);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                firstPageListener.onSwitchToNextFragment(9);
+            }
+        });
+        button2.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View arg0) {
                 return true;

@@ -125,7 +125,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<AbstractMessageView
             return false;
 
         // Don't add message that does not have entity id and the status of the message is not sending.
-        if (item.getMessage().getEntityID() == null) {
+        //如果时间为0，则判断为news的title，description之类
+        if (item.getMessage().getEntityID() == null ||item.getMessage().getDate().getMillis() == 0L) {
             return false;
         }
 

@@ -177,6 +177,8 @@ public class ContactsFragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        title = "Contacts";
+        this.getActivity().setTitle(title);
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null)

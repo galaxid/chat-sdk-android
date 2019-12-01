@@ -49,6 +49,7 @@ import co.chatsdk.ui.chat.options.MediaChatOption;
 import co.chatsdk.ui.chat.options.MediaType;
 import co.chatsdk.ui.job.JobFragment;
 import co.chatsdk.ui.mock.MockFragment;
+import co.chatsdk.ui.news.EventActivity;
 import co.chatsdk.ui.news.NewsFragment;
 import co.chatsdk.ui.profile.ProfileContactFragment;
 import co.chatsdk.ui.rooms.RoomsFragment;
@@ -86,6 +87,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     protected Class chatActivity = ChatActivity.class;
     protected Class threadDetailsActivity = ThreadDetailsActivity.class;
     protected Class threadEditDetailsActivity = ThreadEditDetailsActivity.class;
+    protected Class eventActivity = EventActivity.class;
 
     protected Class searchActivity = SearchActivity.class;
     protected Class editProfileActivity = EditProfileActivity.class;
@@ -389,6 +391,10 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         this.chatActivity = chatActivity;
     }
 
+    public Class getEventActivity() {
+        return eventActivity;
+    }
+
     @Override
     public Class getThreadDetailsActivity() {
         return ThreadDetailsActivity.class;
@@ -515,6 +521,12 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
 
     public void startChatActivityForID(Context context, String threadEntityID) {
         Intent intent = new Intent(context, getChatActivity());
+        intent.putExtra(Keys.IntentKeyThreadEntityID, threadEntityID);
+        startActivity(context, intent);
+    }
+
+    public void startEventActivityForID(Context context, String threadEntityID) {
+        Intent intent = new Intent(context, getEventActivity());
         intent.putExtra(Keys.IntentKeyThreadEntityID, threadEntityID);
         startActivity(context, intent);
     }

@@ -70,6 +70,7 @@ public class MainAppBarActivity extends MainActivity {
                 for(int i = 0; i < tabs.size(); i++) {
                     ((BaseFragment) tabs.get(i).fragment).setTabVisibility(i == tab.getPosition());
                 }
+                setTitle(((BaseFragment) tabs.get(tab.getPosition()).fragment).title);
             }
 
             @Override

@@ -21,6 +21,12 @@
         android:layout_marginRight="2dp"
         android:text="Time"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        style="@style/TextViewStyleSmall"
+        android:text=""/>
 
     <RelativeLayout
         android:id="@+id/content"

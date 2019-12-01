@@ -27,6 +27,7 @@ public abstract class BaseFragment extends DialogFragment {
     protected View mainView;
     protected boolean tabIsVisible;
     protected DisposableList disposableList = new DisposableList();
+    protected String title = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

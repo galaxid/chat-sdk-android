@@ -7,6 +7,7 @@
 
 package co.chatsdk.ui.threads;
 
+import android.os.Bundle;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -29,6 +30,16 @@ public class PublicThreadsFragment extends ThreadsFragment {
     private static FirstPageFragmentListener firstPageListener;
     private boolean major;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(major&&ChatSDK.currentUser().getEntityID().equals(UserList.xuyang1)){
+            setHasOptionsMenu(true);
+        }
+        else if((!major)&&ChatSDK.currentUser().getEntityID().equals(UserList.jueruil))
+            setHasOptionsMenu(true);
+        else setHasOptionsMenu(false);
+    }
     public PublicThreadsFragment() {
     }
 
@@ -82,10 +93,10 @@ public class PublicThreadsFragment extends ThreadsFragment {
             return filtered;
         }*/
         for (Thread t : threads) { //改detail里面的
-            if (major && (t.getCreatorEntityId().equals("SZoT8XiZHOPDGj7Toxz8DNVqLfu2"))) {
+            if (major && (t.getCreatorEntityId().equals(UserList.xuyang1))) {
                 filtered.add(t);
             }
-            else if((!major)&&(t.getCreatorEntityId().equals("s4Pmpq8XDjYo5HusbG7R2oR74Hj2")))
+            else if((!major)&&(t.getCreatorEntityId().equals(UserList.jueruil)))
                 filtered.add(t);
         }
 
