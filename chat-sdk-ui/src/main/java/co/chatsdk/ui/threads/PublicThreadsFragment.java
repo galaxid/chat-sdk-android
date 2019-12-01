@@ -19,7 +19,10 @@ import co.chatsdk.core.events.NetworkEvent;
 import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.helpers.DialogUtils;
 import co.chatsdk.ui.rooms.FirstPageFragmentListener;
+import co.chatsdk.ui.utils.ToastHelper;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Predicate;
 
 /**
@@ -40,6 +43,25 @@ public class PublicThreadsFragment extends ThreadsFragment {
             setHasOptionsMenu(true);
         else setHasOptionsMenu(false);
     }
+
+    @Override
+    public void initViews() {
+        super.initViews();
+
+        if((major&&ChatSDK.currentUser().getEntityID().equals(UserList.xuyang1))||((!major)&&ChatSDK.currentUser().getEntityID().equals(UserList.jueruil))) {
+            disposableList.add(adapter.onLongClickObservable().subscribe(thread -> DialogUtils.showToastDialog(getContext(), "", getResources().getString(R.string.alert_delete_thread), getResources().getString(R.string.delete),
+                    getResources().getString(R.string.cancel), null, () -> {
+                        disposableList.add(ChatSDK.thread().deleteThread(thread)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(() -> {
+                                    adapter.clearData();
+                                    reloadData();
+                                }, throwable -> ToastHelper.show(getContext(), throwable.getLocalizedMessage())));
+                        return null;
+                    })));
+        }
+    }
+
     public PublicThreadsFragment() {
     }
 
@@ -93,11 +115,12 @@ public class PublicThreadsFragment extends ThreadsFragment {
             return filtered;
         }*/
         for (Thread t : threads) { //改detail里面的
-            if (major && (t.getCreatorEntityId().equals(UserList.xuyang1))) {
-                filtered.add(t);
+            if(!t.isDeleted()) {
+                if (major && (t.getCreatorEntityId().equals(UserList.xuyang1))) {
+                    filtered.add(t);
+                } else if ((!major) && (t.getCreatorEntityId().equals(UserList.jueruil)))
+                    filtered.add(t);
             }
-            else if((!major)&&(t.getCreatorEntityId().equals(UserList.jueruil)))
-                filtered.add(t);
         }
 
             return filtered;

@@ -192,7 +192,7 @@ public class SearchActivity extends BaseActivity {
                     @Override
                     public void onComplete() {
                         dialog.dismiss();
-                        if (users.size() == 0) {
+                        if (users.size() == 0 &&!(Character.isDigit(searchEditText.getText().toString().charAt(0)))) {
                             showToast(getString(R.string.search_activity_no_user_found_toast));
                         }
                     }
@@ -203,6 +203,10 @@ public class SearchActivity extends BaseActivity {
                 searchDisposable.dispose();
             }
         });
+        if(users.size()==0&&Character.isDigit(searchEditText.getText().toString().charAt(0))){
+            searchEditText.setText((ChatSDK.config().defaultNamePrefix)+searchEditText.getText().toString());
+            search();
+        }
     }
 
     protected void done () {

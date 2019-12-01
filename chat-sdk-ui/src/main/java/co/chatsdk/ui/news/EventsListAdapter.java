@@ -27,6 +27,7 @@ import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.core.utils.Strings;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.search.NameInterpreter;
 import co.chatsdk.ui.threads.ThreadImageBuilder;
 import co.chatsdk.ui.threads.ThreadSorter;
 import io.reactivex.Observable;
@@ -66,24 +67,16 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsViewHolder> {
             onLongClickSubject.onNext(thread);
             return true;
         });
-        holder.nameTextView.setText("No Title Event");
-        holder.dateTextView.setText("No Time Listed");
-        holder.locationTextView.setText("No Location Listed");
 
-        for (Message m:thread.getMessages()){
-            if(m.getText().contains("Name:")){
-                holder.nameTextView.setText(m.getText().substring(5));
-            }
-            if(m.getText().contains("Date:")){
-                holder.dateTextView.setText(m.getText().substring(5));
-            }
-            if(m.getText().contains("Location:")){
-                holder.locationTextView.setText(m.getText().substring(9));
-            }
-        }
+        String name = thread.getName();
+        NameInterpreter inter = new NameInterpreter(name);
+        holder.nameTextView.setText(inter.returnName());
+        holder.dateTextView.setText(inter.returnDate());
+        holder.locationTextView.setText(inter.returnLoc());
 
+        holder.imageView.setImageResource(R.drawable.uci_career_logo);
 
-        ThreadImageBuilder.load(holder.imageView, thread);
+        //ThreadImageBuilder.load(holder.imageView, thread);
     }
 
 

@@ -51,11 +51,12 @@
             android:theme="@style/ChatSDKSlidingTransactionTheme"/>
 
         <activity android:name=".chat.ChatActivity"
-            android:parentActivityName=".main.MainAppBarActivity"
             android:launchMode = "singleTop"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/ChatSDKSlidingTransactionTheme">
-
+            <!--android:parentActivityName=".main.MainAppBarActivity"
+            原来加一行这个就能实现返回
+            -->
             <!--<intent-filter>-->
                 <!--<action android:name="co.chatsdk.QuickReply" />-->
                 <!--<category android:name="android.intent.category.DEFAULT" />-->
@@ -100,6 +101,11 @@
         <!--Crop image-->
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+        <activity android:name=".news.EventActivity"
+            android:launchMode = "singleTask"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/SdkTheme"/>
 
         <!-- Google Maps Metadata-->
         <meta-data

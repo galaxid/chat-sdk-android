@@ -265,7 +265,7 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
         actionBarView = getLayoutInflater().inflate(R.layout.action_bar_chat_activity, null);
 
         actionBarView.setOnClickListener(v -> {
-            if (ChatSDK.config().threadDetailsEnabled) {
+            if (ChatSDK.config().threadDetailsEnabled&&thread.getCreator().isMe()) {
                 openThreadDetailsActivity();
             }
         });
@@ -281,6 +281,8 @@ public class ChatActivity extends BaseActivity implements TextInputDelegate, Cha
 
     protected void reloadActionBar () {
         String displayName = Strings.nameForThread(thread);
+        int a = displayName.indexOf('\r');
+        if(a>0) displayName = displayName.substring(0,a);
         setTitle(displayName);
         titleTextView.setText(displayName);
         ThreadImageBuilder.load(threadImageView, thread);

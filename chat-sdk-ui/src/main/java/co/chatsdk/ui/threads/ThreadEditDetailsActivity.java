@@ -32,6 +32,7 @@ import co.chatsdk.core.utils.DisposableList;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.chat.MediaSelector;
 import co.chatsdk.ui.main.BaseActivity;
+import co.chatsdk.ui.search.NameInterpreter;
 import co.chatsdk.ui.utils.ImagePickerUploader;
 import co.chatsdk.ui.utils.ToastHelper;
 import io.reactivex.Single;
@@ -56,10 +57,15 @@ public class ThreadEditDetailsActivity extends BaseActivity {
     protected ArrayList<User> users = new ArrayList<>();
 
     protected TextInputEditText nameInput;
+    protected TextInputEditText locationInput;
+    protected TextInputEditText dateInput;
+    protected TextInputEditText desInput;
+    protected TextInputEditText companyInput;
     protected MaterialButton saveButton;
     protected SimpleDraweeView threadImageView;
     protected String threadImageURL;
     protected ImagePickerUploader pickerUploader = new ImagePickerUploader(MediaSelector.CropType.Circle);
+    protected NameInterpreter interpreter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,25 +96,20 @@ public class ThreadEditDetailsActivity extends BaseActivity {
         actionBar.setHomeButtonEnabled(true);
 
         nameInput = findViewById(R.id.text_name);
+        locationInput = findViewById(R.id.text_loc);
+        dateInput = findViewById(R.id.text_date);
+        desInput = findViewById(R.id.text_des);
+        companyInput = findViewById(R.id.text_com);
+
         saveButton = findViewById(R.id.button_done);
         threadImageView = findViewById(R.id.image_thread);
 
-        nameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateSaveButtonState();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        nameInput.addTextChangedListener(textWatcherMaker());
+        locationInput.addTextChangedListener(textWatcherMaker());
+        dateInput.addTextChangedListener(textWatcherMaker());
+        desInput.addTextChangedListener(textWatcherMaker());
+        companyInput.addTextChangedListener(textWatcherMaker());
 
         saveButton.setOnClickListener(v -> {
             didClickOnSaveButton();
@@ -130,6 +131,24 @@ public class ThreadEditDetailsActivity extends BaseActivity {
         refreshView();
     }
 
+    private TextWatcher textWatcherMaker(){
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSaveButtonState();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+    }
     protected void updateSaveButtonState () {
         saveButton.setEnabled(!nameInput.getText().toString().isEmpty());
     }
@@ -141,8 +160,13 @@ public class ThreadEditDetailsActivity extends BaseActivity {
     protected void refreshView () {
         if (thread != null) {
             String name = thread.getName();
-            actionBar.setTitle(name);
-            nameInput.setText(name);
+            interpreter= new NameInterpreter(name);
+            actionBar.setTitle(interpreter.returnName());
+            nameInput.setText(interpreter.returnName());
+            locationInput.setText(interpreter.returnLoc());
+            dateInput.setText(interpreter.returnDate());
+            desInput.setText(interpreter.returnDes());
+            companyInput.setText(interpreter.returnCom());
             saveButton.setText(R.string.update_thread);
         } else {
             saveButton.setEnabled(false);
@@ -156,7 +180,12 @@ public class ThreadEditDetailsActivity extends BaseActivity {
     }
 
     protected void didClickOnSaveButton() {
-        final String threadName = nameInput.getText().toString();
+        final String threadName = interpreter.check(nameInput.getText().toString())+ '\r' +
+                interpreter.check(locationInput.getText().toString()) + '\r' +
+                interpreter.check(dateInput.getText().toString()) + '\r' +
+                interpreter.check(desInput.getText().toString()) + '\r' +
+                interpreter.check(companyInput.getText().toString()) + '\r'
+                ;
 
         // There are several ways this view can be used:
         // 1. Create a Public Thread

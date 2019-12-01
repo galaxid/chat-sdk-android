@@ -90,7 +90,7 @@ public class Configuration {
     public String contactBookInviteContactSmsBody;
 
     // Login
-    public boolean anonymousLoginEnabled = true;
+    public boolean anonymousLoginEnabled = false;
     public boolean facebookLoginEnabled = true;
     public boolean twitterLoginEnabled = true;
     public boolean googleLoginEnabled = true;
@@ -132,7 +132,7 @@ public class Configuration {
 
     public boolean removeUserFromPublicThreadOnExit = true;
 
-    public String defaultNamePrefix = "ChatSDK";
+    public String defaultNamePrefix = "Anteater";
     public String defaultName = null;
 
     public String imageDirectoryName = "ChatSDK";
