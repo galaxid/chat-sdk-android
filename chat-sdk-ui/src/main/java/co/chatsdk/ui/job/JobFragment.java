@@ -60,6 +60,20 @@ public class JobFragment extends BaseFragment {
             }
 
         });
+        Button button2= (Button) view.findViewById(R.id.button_fav);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                firstPageListener.onSwitchToNextFragment(8);
+            }
+        });
+        button2.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View arg0) {
+                return true;
+            }
+
+        });
         return view;
 
     }

@@ -21,6 +21,7 @@ import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.core.ui.ProfileFragmentProvider;
 import co.chatsdk.ui.contacts.ContactsFragment;
 import co.chatsdk.ui.job.JobFragment;
+import co.chatsdk.ui.job.JobListFragment;
 import co.chatsdk.ui.mock.MockFragment;
 import co.chatsdk.ui.news.EventListFragment;
 import co.chatsdk.ui.news.NewsFragment;
@@ -145,6 +146,18 @@ public class PagerAdapterTabs extends FragmentPagerAdapter {
                     ((ContactsFragment)tabs.get(4).fragment).setListener(listener);
                 }
                 else tabs.get(4).fragment = new ProfileContactFragment(listener);
+
+            }
+            if(value==7||value==8){
+                boolean b = tabs.get(2).fragment instanceof JobFragment;
+                mFragmentManager.beginTransaction().remove(tabs.get(2).fragment)
+                        .commitNow();
+                if (b && value==7){
+                    tabs.get(2).fragment = new JobListFragment(listener,false);
+                }else if(b && (value==8)){ // Instance of NextFragment
+                    tabs.get(2).fragment = new JobListFragment(listener,true);
+                }
+                else tabs.get(2).fragment = new JobFragment(listener);
 
             }
 

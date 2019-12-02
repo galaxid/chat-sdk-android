@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    >
+
+    <View
+        android:id="@+id/events_indicator"
+        android:layout_width="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_height="match_parent"
+        android:background="@color/primary"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            style="@style/ThreadListCircleIconStyle"
+            android:id="@+id/img_event_image"
+            android:layout_height="50dp"
+            android:layout_width="70dp"
+            fresco:placeholderImage="@drawable/icn_100_public_thread"
+            fresco:failureImage="@drawable/icn_100_profile_error"
+            fresco:roundAsCircle="false"
+            fresco:fadeDuration="0" />
+
+        <LinearLayout
+            android:layout_toRightOf="@id/img_event_image"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/linear"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/TextViewStyle"
+                android:id="@+id/text_name_events"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="1dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:id="@+id/linear_right_below"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/linear_right_below_1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:scaleType="fitXY"
+                        android:id="@+id/event_date_pic"
+                        android:src="@drawable/icn_36_birthday"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginLeft="5dp"
+                        style="@style/TextViewStyleMedium"
+                        android:id="@+id/event_date"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/chat_Sdk_linear_right"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:scaleType="fitXY"
+                        android:id="@+id/event_location_pic"
+                        android:src="@drawable/icn_36_location"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginLeft="5dp"
+                        style="@style/TextViewStyleMedium"
+                        android:id="@+id/event_location"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

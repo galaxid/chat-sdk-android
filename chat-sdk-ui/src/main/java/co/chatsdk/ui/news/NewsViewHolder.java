@@ -17,31 +17,20 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
 
     public TextView nameTextView;
     public TextView dateTextView;
-    public TextView lastMessageTextView;
-    public TextView unreadMessageCountTextView;
+    public TextView introTextView;
     public SimpleDraweeView imageView;
     public View indicator;
 
     public NewsViewHolder(View itemView) {
         super(itemView);
 
-        nameTextView = itemView.findViewById(R.id.text_name);
-        lastMessageTextView = itemView.findViewById(R.id.txt_last_message);
-        dateTextView = itemView.findViewById(R.id.txt_last_message_date);
-        imageView = itemView.findViewById(R.id.img_thread_image);
-        unreadMessageCountTextView = itemView.findViewById(R.id.txt_unread_messages);
-        indicator = itemView.findViewById(R.id.chat_sdk_indicator);
+        nameTextView = itemView.findViewById(R.id.text_name_events);
+        dateTextView = itemView.findViewById(R.id.event_date);
+        introTextView = itemView.findViewById(R.id.event_intro);
+        imageView = itemView.findViewById(R.id.img_event_image);
+        indicator = itemView.findViewById(R.id.events_indicator);
 
     }
-
-    public void showUnreadIndicator(){
-        indicator.setVisibility(View.VISIBLE);
-    }
-
-    public void hideUnreadIndicator(){
-        indicator.setVisibility(View.GONE);
-    }
-
 
 
 

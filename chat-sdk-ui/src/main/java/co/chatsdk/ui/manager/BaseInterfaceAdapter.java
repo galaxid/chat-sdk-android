@@ -47,9 +47,11 @@ import co.chatsdk.ui.chat.options.DialogChatOptionsHandler;
 import co.chatsdk.ui.chat.options.LocationChatOption;
 import co.chatsdk.ui.chat.options.MediaChatOption;
 import co.chatsdk.ui.chat.options.MediaType;
+import co.chatsdk.ui.job.JobActivity;
 import co.chatsdk.ui.job.JobFragment;
 import co.chatsdk.ui.mock.MockFragment;
 import co.chatsdk.ui.news.EventActivity;
+import co.chatsdk.ui.news.NewsActivity;
 import co.chatsdk.ui.news.NewsFragment;
 import co.chatsdk.ui.profile.ProfileContactFragment;
 import co.chatsdk.ui.rooms.RoomsFragment;
@@ -88,6 +90,8 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     protected Class threadDetailsActivity = ThreadDetailsActivity.class;
     protected Class threadEditDetailsActivity = ThreadEditDetailsActivity.class;
     protected Class eventActivity = EventActivity.class;
+    protected Class newsActivity = NewsActivity.class;
+    protected Class jobActivity = JobActivity.class;
 
     protected Class searchActivity = SearchActivity.class;
     protected Class editProfileActivity = EditProfileActivity.class;
@@ -237,28 +241,28 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
 
     public Tab roomsTab() {
         if (roomsTab == null) {
-            roomsTab = new Tab (context.get().getString(R.string.rooms), R.drawable.ic_action_user, roomsFragment());
+            roomsTab = new Tab (context.get().getString(R.string.rooms), R.drawable.ic_action_public, roomsFragment());
         }
         return roomsTab;
     }
 
     public Tab newsTab() {
         if (newsTab == null) {
-            newsTab = new Tab (context.get().getString(R.string.news), R.drawable.ic_action_user, newsFragment());
+            newsTab = new Tab (context.get().getString(R.string.news), R.drawable.ic_action_private, newsFragment());
         }
         return newsTab;
     }
 
     public Tab jobTab() {
         if (jobTab == null) {
-            jobTab = new Tab (context.get().getString(R.string.job), R.drawable.ic_action_user, jobFragment());
+            jobTab = new Tab (context.get().getString(R.string.job), R.drawable.ic_search, jobFragment());
         }
         return jobTab;
     }
 
     public Tab mockTab() {
         if (mockTab == null) {
-            mockTab = new Tab (context.get().getString(R.string.mock), R.drawable.ic_action_user, mockFragment());
+            mockTab = new Tab (context.get().getString(R.string.mock), R.drawable.ic_action_contacts, mockFragment());
         }
         return mockTab;
     }
@@ -395,6 +399,13 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         return eventActivity;
     }
 
+    public Class getNewsActivity() {
+        return newsActivity;
+    }
+
+    public Class getJobActivity() {
+        return jobActivity;
+    }
     @Override
     public Class getThreadDetailsActivity() {
         return ThreadDetailsActivity.class;
@@ -531,6 +542,17 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         startActivity(context, intent);
     }
 
+    public void startNewsActivityForID(Context context, String threadEntityID) {
+        Intent intent = new Intent(context, getNewsActivity());
+        intent.putExtra(Keys.IntentKeyThreadEntityID, threadEntityID);
+        startActivity(context, intent);
+    }
+
+    public void startJobActivityForID(Context context, String threadEntityID) {
+        Intent intent = new Intent(context, getJobActivity());
+        intent.putExtra(Keys.IntentKeyThreadEntityID, threadEntityID);
+        startActivity(context, intent);
+    }
     /**
      * @deprecated use {@link #getLoginIntent(Context, HashMap)} ()}
      */

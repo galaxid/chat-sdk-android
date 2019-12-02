@@ -17,18 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import co.chatsdk.core.dao.Message;
 import co.chatsdk.core.dao.Thread;
-import co.chatsdk.core.interfaces.ThreadType;
-import co.chatsdk.core.session.ChatSDK;
-import co.chatsdk.core.utils.Strings;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.search.NameInterpreter;
-import co.chatsdk.ui.threads.ThreadImageBuilder;
 import co.chatsdk.ui.threads.ThreadSorter;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;

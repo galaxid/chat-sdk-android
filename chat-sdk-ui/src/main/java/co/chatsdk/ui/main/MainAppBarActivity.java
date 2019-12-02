@@ -1,6 +1,7 @@
 package co.chatsdk.ui.main;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -15,11 +16,16 @@ import co.chatsdk.core.interfaces.ThreadType;
 import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.contacts.ContactsFragment;
+import co.chatsdk.ui.job.JobListFragment;
 import co.chatsdk.ui.news.EventListFragment;
 import co.chatsdk.ui.news.NewsListFragment;
 import co.chatsdk.ui.profile.ProfileFragment;
 import co.chatsdk.ui.threads.PrivateThreadsFragment;
 import co.chatsdk.ui.threads.PublicThreadsFragment;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.BiConsumer;
+
+import static co.chatsdk.ui.search.NameInterpreter.isAdmin;
 
 public class MainAppBarActivity extends MainActivity {
     protected TabLayout tabLayout;
@@ -28,6 +34,34 @@ public class MainAppBarActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(!isAdmin()){
+            List<Thread> threads = ChatSDK.thread().getThreads(ThreadType.Public);
+            Thread fav = null;
+            for (Thread t : threads){
+                if(t.getCreator().isMe()){
+                    fav = t;
+                }
+            }
+            if(fav==null){
+                BiConsumer<Thread, Throwable> consumer = (thread, throwable) -> {
+                    dismissProgressDialog();
+                    if (throwable == null) {
+                        // Finish this activity before opening the new thread to prevent the
+                        // user from going back to the creation screen by pressing the back button
+                        //finish();
+                        //ChatSDK.ui().startChatActivityForID(ChatSDK.shared().context(), thread.getEntityID());
+                    } else {
+                        ChatSDK.logError(throwable);
+                        Toast.makeText(ChatSDK.shared().context(), throwable.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                };
+                disposableList.add(ChatSDK.publicThread().createPublicThreadWithName(ChatSDK.currentUser().getName(),
+                        null, null, null)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(consumer));
+            }
+        }
         super.onCreate(savedInstanceState);
     }
 
@@ -139,6 +173,11 @@ public class MainAppBarActivity extends MainActivity {
             }
             else if (adapter.getItem(1) instanceof PrivateThreadsFragment) {
                 ((PrivateThreadsFragment) adapter.getItem(1)).backPressed();
+            }
+        }
+        if(viewPager.getCurrentItem() == 2) {
+            if (adapter.getItem(2) instanceof JobListFragment) {
+                ((JobListFragment) adapter.getItem(2)).backPressed();
             }
         }
         if(viewPager.getCurrentItem() == 4) {

@@ -1,4 +1,4 @@
-package co.chatsdk.ui.news;
+package co.chatsdk.ui.job;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.chatsdk.core.dao.Keys;
 import co.chatsdk.core.dao.Thread;
 import co.chatsdk.core.dao.User;
 import co.chatsdk.core.events.EventType;
@@ -30,26 +29,25 @@ import co.chatsdk.ui.threads.UserList;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Predicate;
 
-public abstract class NewsBaseFragment extends BaseFragment {
+public abstract class JobBaseFragment extends BaseFragment {
 
     protected RecyclerView listThreads;
     protected EditText searchField;
-    protected NewsListAdapter adapter;
+    protected JobListAdapter adapter;
     protected String filter;
     protected MenuItem addMenuItem;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        title = "News";
+        title = "Job Board";
         this.getActivity().setTitle(title);
         super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
 
-        if(ChatSDK.currentUser().getEntityID().equals(UserList.jueruilics)){
+        if(ChatSDK.currentUser().getEntityID().equals(UserList.lucas)){
                 setHasOptionsMenu(true);
         }
         else setHasOptionsMenu(false);
-
     }
 
     @Override
@@ -91,13 +89,13 @@ public abstract class NewsBaseFragment extends BaseFragment {
         searchField = mainView.findViewById(R.id.search_field);
         listThreads = mainView.findViewById(R.id.list_threads);
 
-        adapter = new NewsListAdapter(getActivity());
+        adapter = new JobListAdapter(getActivity());
 
         listThreads.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         listThreads.setAdapter(adapter);
 
         Disposable d = adapter.onClickObservable().subscribe(thread -> {
-            ChatSDK.ui().startNewsActivityForID(getContext(), thread.getEntityID());
+            ChatSDK.ui().startJobActivityForID(getContext(), thread.getEntityID());
         });
     }
 

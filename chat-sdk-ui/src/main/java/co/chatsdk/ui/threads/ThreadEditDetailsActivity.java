@@ -61,6 +61,8 @@ public class ThreadEditDetailsActivity extends BaseActivity {
     protected TextInputEditText dateInput;
     protected TextInputEditText desInput;
     protected TextInputEditText companyInput;
+    protected TextInputEditText linkInput;
+    protected TextInputEditText introInput;
     protected MaterialButton saveButton;
     protected SimpleDraweeView threadImageView;
     protected String threadImageURL;
@@ -100,6 +102,8 @@ public class ThreadEditDetailsActivity extends BaseActivity {
         dateInput = findViewById(R.id.text_date);
         desInput = findViewById(R.id.text_des);
         companyInput = findViewById(R.id.text_com);
+        linkInput = findViewById(R.id.text_link);
+        introInput = findViewById(R.id.text_intro);
 
         saveButton = findViewById(R.id.button_done);
         threadImageView = findViewById(R.id.image_thread);
@@ -110,6 +114,8 @@ public class ThreadEditDetailsActivity extends BaseActivity {
         dateInput.addTextChangedListener(textWatcherMaker());
         desInput.addTextChangedListener(textWatcherMaker());
         companyInput.addTextChangedListener(textWatcherMaker());
+        linkInput.addTextChangedListener(textWatcherMaker());
+        introInput.addTextChangedListener(textWatcherMaker());
 
         saveButton.setOnClickListener(v -> {
             didClickOnSaveButton();
@@ -167,6 +173,9 @@ public class ThreadEditDetailsActivity extends BaseActivity {
             dateInput.setText(interpreter.returnDate());
             desInput.setText(interpreter.returnDes());
             companyInput.setText(interpreter.returnCom());
+            linkInput.setText(interpreter.returnLink());
+            introInput.setText(interpreter.returnIntro());
+
             saveButton.setText(R.string.update_thread);
         } else {
             saveButton.setEnabled(false);
@@ -180,11 +189,16 @@ public class ThreadEditDetailsActivity extends BaseActivity {
     }
 
     protected void didClickOnSaveButton() {
-        final String threadName = interpreter.check(nameInput.getText().toString())+ '\r' +
-                interpreter.check(locationInput.getText().toString()) + '\r' +
-                interpreter.check(dateInput.getText().toString()) + '\r' +
-                interpreter.check(desInput.getText().toString()) + '\r' +
-                interpreter.check(companyInput.getText().toString()) + '\r'
+        if(interpreter==null){
+            interpreter= new NameInterpreter("");
+        }
+        final String threadName = interpreter.check(get(nameInput))+ '\r'+
+                interpreter.check(get(locationInput)) + '\r' +
+                interpreter.check(get(dateInput)) + '\r' +
+                interpreter.check(get(desInput)) + '\r' +
+                interpreter.check(get(companyInput)) + '\r' +
+                interpreter.check(get(linkInput)) + '\r' +
+                interpreter.check(get(introInput)) + '\r'
                 ;
 
         // There are several ways this view can be used:
@@ -225,6 +239,13 @@ public class ThreadEditDetailsActivity extends BaseActivity {
             thread.update();
             disposableList.add(ChatSDK.thread().pushThread(thread).subscribe(this::finish, toastOnErrorConsumer()));
         }
+    }
+
+    private String get(TextInputEditText t){
+        if(t.getText().toString().isEmpty()) {
+            return "";
+        }
+        return t.getText().toString()+"";
     }
 
     @Override

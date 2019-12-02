@@ -1,4 +1,4 @@
-package co.chatsdk.ui.news;
+package co.chatsdk.ui.job;
 
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +13,7 @@ import co.chatsdk.ui.R;
  * Created by benjaminsmiley-andrews on 07/06/2017.
  */
 
-public class EventsViewHolder extends RecyclerView.ViewHolder {
+public class JobViewHolder extends RecyclerView.ViewHolder {
 
     public TextView nameTextView;
     public TextView dateTextView;
@@ -21,7 +21,7 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     public SimpleDraweeView imageView;
     public View indicator;
 
-    public EventsViewHolder(View itemView) {
+    public JobViewHolder(View itemView) {
         super(itemView);
 
         nameTextView = itemView.findViewById(R.id.text_name_events);

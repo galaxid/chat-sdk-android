@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/event_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_event"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <ScrollView
+        android:id="@+id/events_details"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        >
+            <LinearLayout
+                android:id="@+id/linear_event2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/linear_event_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="70dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/event_title_pic"
+                            android:src="@drawable/uci_emblem"
+                            android:layout_gravity="center_vertical"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No Title Event"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            style="@style/TextViewStyle"
+                            android:id="@+id/event_title"
+                            android:layout_gravity="center_vertical"
+                            />
+                        <Button
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/add_fav"
+                            android:text="like"
+                            android:layout_marginRight="10dp"
+                            android:background="#DCDCDC"
+                            android:layout_gravity="center_vertical"
+                            >
+                        </Button>
+                    </LinearLayout>
+                    <ImageView
+                     android:layout_width="match_parent"
+                     android:layout_height="7dp"
+                     android:layout_marginTop="5dp"
+                     android:background="#1F000000"
+                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:scaleType="fitXY"
+                        android:id="@+id/event_date_pic"
+                        android:src="@drawable/icn_36_birthday"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No Time Listed"
+                        android:layout_marginLeft="5dp"
+                        style="@style/TextViewStyleMedium"
+                        android:id="@+id/event_date"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:scaleType="fitXY"
+                        android:id="@+id/event_location_pic"
+                        android:src="@drawable/icn_36_location"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No Location Listed"
+                        android:layout_marginLeft="5dp"
+                        style="@style/TextViewStyleMedium"
+                        android:id="@+id/event_location"/>
+                </LinearLayout>
+            </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1F000000"
+                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Event Description"
+                    android:layout_marginLeft="10dp"
+                    style="@style/TextViewStyle"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No Description Listed"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/event_des"
+                    style="@style/TextViewStyleMedium"
+                    />
+
+
+            </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/join_event"
+                    android:text="Join Event"
+                    android:layout_alignParentBottom="true"
+                    >
+                </Button>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_dis"
+        android:text="Start discussion"
+        android:layout_alignParentBottom="true"
+        >
+    </Button>
+
+</LinearLayout>

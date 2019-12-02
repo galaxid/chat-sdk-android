@@ -5,7 +5,7 @@
  * Last Modification at: 3/12/15 4:27 PM
  */
 
-package co.chatsdk.ui.news;
+package co.chatsdk.ui.job;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,24 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import co.chatsdk.core.dao.Message;
 import co.chatsdk.core.dao.Thread;
-import co.chatsdk.core.interfaces.ThreadType;
-import co.chatsdk.core.session.ChatSDK;
-import co.chatsdk.core.utils.Strings;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.search.NameInterpreter;
-import co.chatsdk.ui.threads.ThreadImageBuilder;
 import co.chatsdk.ui.threads.ThreadSorter;
-import co.chatsdk.ui.threads.ThreadViewHolder;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
-public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
+public class JobListAdapter extends RecyclerView.Adapter<JobViewHolder> {
 
     public static int ThreadCellType = 0;
 
@@ -46,23 +39,21 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     protected PublishSubject<Thread> onClickSubject = PublishSubject.create();
     protected PublishSubject<Thread> onLongClickSubject = PublishSubject.create();
 
-    public NewsListAdapter(Context context) {
+    public JobListAdapter(Context context) {
         this.context = new WeakReference(context);
     }
 
     @Override
-    public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public JobViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.view_news_row, null);
-        return new NewsViewHolder(row);
+        View row = inflater.inflate(R.layout.view_job_row, null);
+        return new JobViewHolder(row);
     }
 
     @Override
-    public void onBindViewHolder(final NewsViewHolder holder, int position) {
+    public void onBindViewHolder(final JobViewHolder holder, int position) {
 
         final Thread thread = threads.get(position);
-
-        holder.nameTextView.setText(Strings.nameForThread(thread));
 
         holder.itemView.setOnClickListener(view -> onClickSubject.onNext(thread));
 
@@ -75,9 +66,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
         NameInterpreter inter = new NameInterpreter(name);
         holder.nameTextView.setText(inter.returnName());
         holder.dateTextView.setText(inter.returnDate());
-        holder.introTextView.setText(inter.returnIntro());
-        holder.imageView.setImageResource(R.drawable.uci_news_logo);
+        holder.locationTextView.setText(inter.returnLoc());
 
+        holder.imageView.setImageResource(R.drawable.uci_emblem);
 
         //ThreadImageBuilder.load(holder.imageView, thread);
     }

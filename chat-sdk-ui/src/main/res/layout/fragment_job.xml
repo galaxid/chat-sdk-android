@@ -14,10 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:name="Job Board"
+        app:name="Job"
         app:description="Start searching jobs"
         />
-
+    <co.chatsdk.ui.rooms.TwoLineButton
+        android:id="@+id/button_fav"
+        android:background="@drawable/ripple_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:name="Favorite"
+        app:description="View favorite jobs"
+        />
 
 
 

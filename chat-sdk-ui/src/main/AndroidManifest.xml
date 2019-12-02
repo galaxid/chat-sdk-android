@@ -107,6 +107,16 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/SdkTheme"/>
 
+        <activity android:name=".news.NewsActivity"
+            android:launchMode = "singleTask"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/SdkTheme"/>
+
+        <activity android:name=".job.JobActivity"
+            android:launchMode = "singleTask"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/SdkTheme"/>
+
         <!-- Google Maps Metadata-->
         <meta-data
             android:name="com.google.android.gms.version"

@@ -50,7 +50,7 @@ public class MockFragment extends BaseFragment {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                firstPageListener.onSwitchToNextFragment(8);
+                firstPageListener.onSwitchToNextFragment(9);
             }
         });
         button1.setOnLongClickListener(new View.OnLongClickListener(){
@@ -64,7 +64,7 @@ public class MockFragment extends BaseFragment {
         button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                firstPageListener.onSwitchToNextFragment(9);
+                firstPageListener.onSwitchToNextFragment(10);
             }
         });
         button2.setOnLongClickListener(new View.OnLongClickListener(){

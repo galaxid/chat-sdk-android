@@ -86,7 +86,8 @@ public interface InterfaceAdapter {
     void startActivity (Context context, Intent intent);
     void startChatActivityForID(Context context, String threadEntityID);
     void startEventActivityForID(Context context, String threadEntityID);
-
+    void startNewsActivityForID(Context context, String threadEntityID);
+    void startJobActivityForID(Context context, String threadEntityID);
     /**
      * Use {@link #startThreadEditDetailsActivity(Context, String)}
      * @param context
