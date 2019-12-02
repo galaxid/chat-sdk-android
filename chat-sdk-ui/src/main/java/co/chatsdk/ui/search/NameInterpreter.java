@@ -141,7 +141,7 @@ public class NameInterpreter {
             return true;
         if(ChatSDK.currentUser().getEntityID().equals(UserList.jueruil))
             return true;
-        if(ChatSDK.currentUser().getEntityID().equals(UserList.jueruil))
+        if(ChatSDK.currentUser().getEntityID().equals(UserList.jueruilics))
             return true;
         if(ChatSDK.currentUser().getEntityID().equals(UserList.lucas))
             return true;
