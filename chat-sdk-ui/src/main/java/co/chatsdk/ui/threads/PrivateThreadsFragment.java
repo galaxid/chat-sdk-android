@@ -7,6 +7,7 @@
 
 package co.chatsdk.ui.threads;
 
+import android.os.Bundle;
 import android.view.MenuItem;
 
 import java.util.List;
@@ -33,6 +34,13 @@ import io.reactivex.functions.Predicate;
  * Created by itzik on 6/17/2014.
  */
 public class PrivateThreadsFragment extends ThreadsFragment {
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+    }
 
     static FirstPageFragmentListener firstPageListener;
 
