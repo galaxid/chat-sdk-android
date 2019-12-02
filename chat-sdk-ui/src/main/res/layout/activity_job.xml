@@ -48,16 +48,30 @@
                             android:src="@drawable/uci_emblem"
                             android:layout_gravity="center_vertical"
                             />
-                        <TextView
+                        <LinearLayout
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
-                            android:text="No Title Event"
+                            android:orientation="vertical"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No Title Event"
                             style="@style/TextViewStyle"
                             android:id="@+id/event_title"
                             android:layout_gravity="center_vertical"
                             />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nintendo"
+                                style="@style/TextViewStyleMedium"
+                                android:id="@+id/event_company"
+                                android:layout_gravity="center_vertical"
+                                />
+
+                        </LinearLayout>
                         <Button
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"

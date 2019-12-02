@@ -45,6 +45,7 @@ public class JobActivity extends BaseActivity {
     public TextView dateTextView;
     public TextView locationTextView;
     public TextView desTextView;
+    public TextView companyTextView;
 
     protected boolean removeUserFromChatOnExit = ChatSDK.config().removeUserFromPublicThreadOnExit;
 
@@ -86,12 +87,14 @@ public class JobActivity extends BaseActivity {
         dateTextView = findViewById(R.id.event_date);
         locationTextView = findViewById(R.id.event_location);
         desTextView = findViewById(R.id.event_des);
+        companyTextView = findViewById(R.id.event_company);
         String name = thread.getName();
         NameInterpreter i = new NameInterpreter(name);
         nameTextView.setText(i.returnName());
         dateTextView.setText(i.returnDate());
         locationTextView.setText(i.returnLoc());
         desTextView.setText(i.returnDes());
+        companyTextView.setText(i.returnCom());
 
         Button button2= (Button) findViewById(R.id.join_event);
         button2.setOnClickListener(new View.OnClickListener(){
