@@ -17,6 +17,7 @@ import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
 import co.chatsdk.ui.contacts.ContactsFragment;
 import co.chatsdk.ui.job.JobListFragment;
+import co.chatsdk.ui.mock.MockListFragment;
 import co.chatsdk.ui.news.EventListFragment;
 import co.chatsdk.ui.news.NewsListFragment;
 import co.chatsdk.ui.profile.ProfileFragment;
@@ -178,6 +179,11 @@ public class MainAppBarActivity extends MainActivity {
         if(viewPager.getCurrentItem() == 2) {
             if (adapter.getItem(2) instanceof JobListFragment) {
                 ((JobListFragment) adapter.getItem(2)).backPressed();
+            }
+        }
+        if(viewPager.getCurrentItem() == 3) {
+            if (adapter.getItem(3) instanceof MockListFragment) {
+                ((MockListFragment) adapter.getItem(3)).backPressed();
             }
         }
         if(viewPager.getCurrentItem() == 4) {

@@ -56,11 +56,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text=""
                 android:maxLines="1"
                 android:ellipsize="end"
                 style="@style/TextViewStyleMedium"
-                android:id="@+id/text_company"
+                android:id="@+id/text_major"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 />
@@ -72,6 +72,32 @@
                 android:layout_weight="1"
                 android:id="@+id/linear_right_below"
                 android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:id="@+id/chat_Sdk_linear_right"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:scaleType="fitXY"
+                        android:id="@+id/event_date_pic"
+                        android:src="@drawable/icn_36_birthday"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginLeft="5dp"
+                        style="@style/TextViewStyleMedium"
+                        android:id="@+id/event_date"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -107,49 +133,12 @@
                     android:id="@+id/linear_right_below_1"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:scaleType="fitXY"
-                        android:id="@+id/event_full_pic"
-                        android:src="@drawable/icn_36_name"
-                        android:layout_gravity="center_vertical"
-                        />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Full-Time Job"
-                        android:layout_marginLeft="5dp"
                         style="@style/TextViewStyleMedium"
-                        android:id="@+id/event_full"/>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"
-                    android:id="@+id/chat_Sdk_linear_right"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:scaleType="fitXY"
-                        android:id="@+id/event_date_pic"
-                        android:src="@drawable/icn_36_birthday"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginLeft="5dp"
-                        style="@style/TextViewStyleMedium"
-                        android:id="@+id/event_date"/>
+                        android:id="@+id/text_intro"/>
 
 
 

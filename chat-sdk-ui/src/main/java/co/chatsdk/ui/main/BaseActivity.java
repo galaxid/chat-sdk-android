@@ -198,7 +198,7 @@ public class BaseActivity extends AppCompatActivity {
         showToast(this.getString(textResourceId));
     }
 
-    protected void showToast(String text){
+    public void showToast(String text){
         if (!text.isEmpty()) {
             ToastHelper.show(this, text);
         }

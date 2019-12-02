@@ -1,4 +1,4 @@
-package co.chatsdk.ui.job;
+package co.chatsdk.ui.mock;
 
 import android.view.View;
 import android.widget.TextView;
@@ -13,22 +13,24 @@ import co.chatsdk.ui.R;
  * Created by benjaminsmiley-andrews on 07/06/2017.
  */
 
-public class JobViewHolder extends RecyclerView.ViewHolder {
+public class MockViewHolder extends RecyclerView.ViewHolder {
 
     public TextView nameTextView;
+    public TextView majorTextView;
     public TextView dateTextView;
     public TextView locationTextView;
-    public TextView companyTextView;
+    public TextView introTextView;
     public SimpleDraweeView imageView;
     public View indicator;
 
-    public JobViewHolder(View itemView) {
+    public MockViewHolder(View itemView) {
         super(itemView);
 
         nameTextView = itemView.findViewById(R.id.text_name_events);
-        locationTextView = itemView.findViewById(R.id.event_location);
+        majorTextView= itemView.findViewById(R.id.text_major);
         dateTextView = itemView.findViewById(R.id.event_date);
-        companyTextView = itemView.findViewById(R.id.text_company);
+        locationTextView = itemView.findViewById(R.id.event_location);
+        introTextView = itemView.findViewById(R.id.text_intro);
         imageView = itemView.findViewById(R.id.img_event_image);
         indicator = itemView.findViewById(R.id.events_indicator);
 

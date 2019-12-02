@@ -23,6 +23,7 @@ import co.chatsdk.ui.contacts.ContactsFragment;
 import co.chatsdk.ui.job.JobFragment;
 import co.chatsdk.ui.job.JobListFragment;
 import co.chatsdk.ui.mock.MockFragment;
+import co.chatsdk.ui.mock.MockListFragment;
 import co.chatsdk.ui.news.EventListFragment;
 import co.chatsdk.ui.news.NewsFragment;
 import co.chatsdk.ui.news.NewsListFragment;
@@ -158,6 +159,16 @@ public class PagerAdapterTabs extends FragmentPagerAdapter {
                     tabs.get(2).fragment = new JobListFragment(listener,true);
                 }
                 else tabs.get(2).fragment = new JobFragment(listener);
+
+            }
+            if(value==9){
+                boolean b = tabs.get(3).fragment instanceof MockFragment;
+                mFragmentManager.beginTransaction().remove(tabs.get(3).fragment)
+                        .commitNow();
+                if (b){
+                    tabs.get(3).fragment = new MockListFragment(listener);
+                }
+                else tabs.get(3).fragment = new MockFragment(listener);
 
             }
 

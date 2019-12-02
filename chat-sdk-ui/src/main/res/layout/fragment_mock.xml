@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:name="Mock Interview"
+        app:name="Board"
         app:description="Find your mock interview partner here!"
         />
     <co.chatsdk.ui.rooms.TwoLineButton
@@ -23,8 +23,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:name="About Me"
-        app:description="Post your information here!"
+        app:name="Post"
+        app:description="Post or edit your request here!"
+        />
+    <co.chatsdk.ui.rooms.TwoLineButton
+        android:id="@+id/button_delete"
+        android:background="@drawable/ripple_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:name="Delete"
+        app:description="Delete your request here!"
         />
 
 

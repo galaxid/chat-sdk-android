@@ -97,7 +97,7 @@ public interface InterfaceAdapter {
     void startPublicThreadEditDetailsActivity(Context context, String threadEntityID);
     void startThreadEditDetailsActivity(Context context, String threadEntityID);
     void startThreadEditDetailsActivity(Context context, String threadEntityID, ArrayList<String> userEntityIDs);
-
+    void startMockEditDetailsActivity(Context context, String threadEntityID);
     // @Deprecated use {@link #getLoginIntent(Context, HashMap)}
 //  void startLoginActivity(Context context, boolean attemptCachedLogin);
 //  void startLoginActivity (Context context, HashMap<String, Object> extras);

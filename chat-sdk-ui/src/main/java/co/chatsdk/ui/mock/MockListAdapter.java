@@ -5,7 +5,7 @@
  * Last Modification at: 3/12/15 4:27 PM
  */
 
-package co.chatsdk.ui.job;
+package co.chatsdk.ui.mock;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,13 +21,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import co.chatsdk.core.dao.Thread;
+import co.chatsdk.core.session.ChatSDK;
 import co.chatsdk.ui.R;
+import co.chatsdk.ui.job.JobViewHolder;
 import co.chatsdk.ui.search.NameInterpreter;
 import co.chatsdk.ui.threads.ThreadSorter;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
-public class JobListAdapter extends RecyclerView.Adapter<JobViewHolder> {
+public class MockListAdapter extends RecyclerView.Adapter<MockViewHolder> {
 
     public static int ThreadCellType = 0;
 
@@ -39,19 +41,19 @@ public class JobListAdapter extends RecyclerView.Adapter<JobViewHolder> {
     protected PublishSubject<Thread> onClickSubject = PublishSubject.create();
     protected PublishSubject<Thread> onLongClickSubject = PublishSubject.create();
 
-    public JobListAdapter(Context context) {
+    public MockListAdapter(Context context) {
         this.context = new WeakReference(context);
     }
 
     @Override
-    public JobViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MockViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.view_job_row, null);
-        return new JobViewHolder(row);
+        View row = inflater.inflate(R.layout.view_mock_row, null);
+        return new MockViewHolder(row);
     }
 
     @Override
-    public void onBindViewHolder(final JobViewHolder holder, int position) {
+    public void onBindViewHolder(final MockViewHolder holder, int position) {
 
         final Thread thread = threads.get(position);
 
@@ -64,11 +66,12 @@ public class JobListAdapter extends RecyclerView.Adapter<JobViewHolder> {
 
         String name = thread.getName();
         NameInterpreter inter = new NameInterpreter(name);
-        holder.nameTextView.setText(inter.returnName());
+        holder.nameTextView.setText(thread.getCreator().getName());
+        holder.majorTextView.setText(inter.returnDes());
         holder.dateTextView.setText(inter.returnDate());
         holder.locationTextView.setText(inter.returnLoc());
-        holder.companyTextView.setText(inter.returnCom());
-        holder.imageView.setImageResource(R.drawable.uci_emblem);
+        holder.introTextView.setText(inter.returnIntro());
+        holder.imageView.setImageURI(thread.getCreator().getAvatarURL());
 
         //ThreadImageBuilder.load(holder.imageView, thread);
     }

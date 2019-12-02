@@ -49,6 +49,7 @@ import co.chatsdk.ui.chat.options.MediaChatOption;
 import co.chatsdk.ui.chat.options.MediaType;
 import co.chatsdk.ui.job.JobActivity;
 import co.chatsdk.ui.job.JobFragment;
+import co.chatsdk.ui.mock.MockEditDetailsActivity;
 import co.chatsdk.ui.mock.MockFragment;
 import co.chatsdk.ui.news.EventActivity;
 import co.chatsdk.ui.news.NewsActivity;
@@ -89,6 +90,7 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
     protected Class chatActivity = ChatActivity.class;
     protected Class threadDetailsActivity = ThreadDetailsActivity.class;
     protected Class threadEditDetailsActivity = ThreadEditDetailsActivity.class;
+    protected Class mockEditDetailsActivity = MockEditDetailsActivity.class;
     protected Class eventActivity = EventActivity.class;
     protected Class newsActivity = NewsActivity.class;
     protected Class jobActivity = JobActivity.class;
@@ -421,6 +423,14 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
         return threadEditDetailsActivity;
     }
 
+    public Class getMockEditDetailsActivity() {
+        return mockEditDetailsActivity;
+    }
+
+    public void setMockEditDetailsActivity (Class mockEditDetailsActivity) {
+        this.mockEditDetailsActivity = mockEditDetailsActivity;
+    }
+
     @Override
     public void setThreadEditDetailsActivity (Class threadEditDetailsActivity) {
         this.threadEditDetailsActivity = threadEditDetailsActivity;
@@ -600,6 +610,21 @@ public class BaseInterfaceAdapter implements InterfaceAdapter {
 
     public void startThreadEditDetailsActivity(Context context, String threadEntityID, ArrayList<String> userEntityIDs){
         Intent intent = new Intent(context, getThreadEditDetailsActivity());
+        if (threadEntityID != null) {
+            intent.putExtra(Keys.IntentKeyThreadEntityID, threadEntityID);
+        }
+        if (userEntityIDs != null) {
+            intent.putStringArrayListExtra(Keys.IntentKeyUserEntityIDList, userEntityIDs);
+        }
+        startActivity(context, intent);
+    }
+
+    public void startMockEditDetailsActivity(Context context, String threadEntityID){
+        startMockEditDetailsActivity(context, threadEntityID, null);
+    }
+
+    public void startMockEditDetailsActivity(Context context, String threadEntityID, ArrayList<String> userEntityIDs){
+        Intent intent = new Intent(context, getMockEditDetailsActivity());
         if (threadEntityID != null) {
             intent.putExtra(Keys.IntentKeyThreadEntityID, threadEntityID);
         }
